@@ -1,0 +1,53 @@
+System Administration
+Lab 3 Questions
+Bradley N. Harris
+417002072
+
+1) Write a list of 10 of the most important functions within the MySQLdb library, and explain their use.
+
+
+1 - connect(parameters...)
+	A constructor that creates a connection to a database by returning a Connection Object. The default value for each parameter is NULL or 0 but some of them must be specified as keyword arguments. Some of these parameters include
+	
+		host: The name of the host to connect to. Default uses the local host via a UNIX socket
+		
+		user: The user to authenticate as. Default is the current effective user.
+	
+		passwd:The password to authenticate with. Default is no password at all.
+		
+		db: The database being used. Default is no database at all.
+
+	Connection functions are called by "ConnectionVariableName.FunctionName".
+	
+2 - .commit()
+	This connection function allows any changes made by the current transaction to become permanent and visible to other sessions. This however, only works if the database and tables support transactions. If not, then this function does nothing.
+	
+3 - .rollback()
+	This connection function reverses/cancels any changes made by the current transaction. Like commit(), it only works if the database and table support transactions and if the data base does not support transactions, raises a "NotSupportedError". 
+
+4 - .close()
+	This connection function simply disconnects/terminates the connection to the database.
+
+	
+5 - cursor([cursorclass])
+	Creates a cursor object that is capable of executing SQL queries on a database. MySQL does not support cursors but they can be easily mimicked. If a cursorclass parameter is not present, then it defaults to the value given when creatin the connection object.
+	
+	Cursor functions are called by "CursorVariableName.FunctionName".
+	
+
+6 - .execute()
+	A cursor method that executes SQL queries on the database. The queries (as a string) are taken as an argument. Variables in the queries are specified using %s or %(name)s
+	
+7 - .executemany()
+	A cursor method used to execute SQL queries that involve multiple sequences of parameters. It does so by iterating through the sequences, passing the current parameters to the execute method. 
+	
+8 - .fetchone()
+	This cursor method retrieves the new row of the results from an SQL query and returns a single sequence. If no more rows are available, then it returns nothing.
+	
+9 - .fetchall()
+	This cursor method retrieves all (or all remaining) rows that result from an executed query. If no more rows are available, then it returns nothing.	
+
+10 - .close()
+	This cursor method is used when you are finished using a cursor. It closes the cursor, resets all results and ensures the cursor object has no reference to its original connection object.
+	
+	
